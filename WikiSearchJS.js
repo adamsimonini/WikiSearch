@@ -1,46 +1,56 @@
 
-$('#searchInput').keydown(function(event){
-    if (event.keyCode == 13){
-      userInput = $('#searchInput').val();
-      wikiURL = "http://example.org/w/index.php?action=opensearch&Search=" + userInput + "&format=-json&callBack=?";
-    }
 
-});
+$( document ).ready(function(){
 
-function userInput(terms) {
-    if(event.keyCode == 13) {
-        alert(terms.value);
-    }
-}
+var hasReturned = false;
 
+  // Affix user input to variable and set URL
+  $('#searchInput').keydown(function(event){
+      if (event.keyCode == 13){
+        hasReturned = true;
+        userInput = $('#searchInput').val();
+        wikiURL = "https://en.wikipedia.org/w/api.php?action=query&titles=god" + userInput + "&format=json";
+        console.log("Help");
+         $('#searchInput').val("");
+        /*
+        $.ajax({
+          type:"GET",
+          url: wikiURL,
+          async: false,
+          dataType: "json",
+          success: function(data){
+            alert(data);
 
-//Auto Expand Text Area
+           }
+         });*/
+      }else{
+          return;
+      }
+    });
+  });
+/*
+   // Use URL to perform AJAX GET Request
+      if(hasReturned){
 
-  function adjust_textarea(h) {
-      h.style.height = "20px";
-      h.style.height = (h.scrollHeight)+"px";
-  }
-
-
-
-  /*
           $.ajax({
             type:"GET",
             url: wikiURL,
             async: false,
             dataType: "json",
             success: function(data){
-              console.log(data);
+              alert(data);
 
-              for(i=0; i < listOfArticles.length;i++){
-              var articleStr = listOfArticles[i];
-                var url = 'http://wikipedia.org/wiki/' + articleStr;
-                $("#results").append('<li> <a href"' + url + '">' )
-              }
+             }
+           });
+       }else{
+          return;
+       }
+     });
+});
+*/
+//Auto Expand Text Area For Style
 
-            }
-            error: function(errorMessage){
-              alert("Could not complete request");
-            }
-          });
-  */
+  function adjust_textarea(h) {
+      h.style.height = "20px";
+      h.style.height = (h.scrollHeight)+"px";
+  }
