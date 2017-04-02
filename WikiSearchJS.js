@@ -9,20 +9,24 @@ var hasReturned = false;
       if (event.keyCode == 13){
         hasReturned = true;
         userInput = $('#searchInput').val();
-        wikiURL = "https://en.wikipedia.org/w/api.php?action=query&titles=god" + userInput + "&format=json";
-        console.log("Help");
-         $('#searchInput').val("");
-        /*
+        wikiURL = "https://en.wikipedia.org/w/api.php?action=opensearch&search=" + userInput + "&format=json";
+        $('#searchInput').val("");
+        $('#searchInput').replaceWith('<input id="searchInput" class="form-style-4" type="text" style="text-align:center" placeholder="search again?" name="field1" required="true" />');
+
+        //Reset the value of input field to blank
+
+
+        //Make AJAX Request to Media Wiki
         $.ajax({
           type:"GET",
           url: wikiURL,
           async: false,
-          dataType: "json",
+          dataType: "jsonp",
           success: function(data){
-            alert(data);
+            console.log(data);
 
            }
-         });*/
+         });
       }else{
           return;
       }
